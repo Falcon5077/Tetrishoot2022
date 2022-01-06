@@ -13,6 +13,7 @@ public class BulletManager : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        
         if(other.gameObject.transform.parent.GetComponent<Drop>().isHit == false)   // 땅에 떨어진 블럭이 아니라면, 즉 떨어지고 있는 블럭이라면
         {
             Destroy(this.gameObject);   // 총알과 블럭을 삭제

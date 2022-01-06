@@ -42,13 +42,16 @@ public class Drop : MonoBehaviour
 
             // 중력 제거, 위치 고정
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+           // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotationZ;
 
             // 교정한 현재 좌표를 fixedPos에 저장
             fixedPos = transform.position;
 
             // 최초 충돌 동작 완료
             isHit = true;
+
+            this.gameObject.tag = "bottom";
                 
             // 자식 오브젝트의 색깔을 white -> black
             for(int i = 0; i < transform.childCount; i++)
@@ -62,9 +65,10 @@ public class Drop : MonoBehaviour
         else
         {
             // 이후에 발생하는 충돌에는 고정된 좌표로 고정
-            transform.position = fixedPos;
+           transform.position = fixedPos;
         }
     }
+
 
     // 블럭 오브젝트 회전 시 화면 밖으로 나가는 블록 조정하는 함수
     public void SetMyPosition(int a)
