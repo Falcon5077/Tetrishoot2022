@@ -55,14 +55,15 @@ public class Drop : MonoBehaviour
             {
                 if(transform.GetChild(i) != null){
                     transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.black;
-                    //transform.GetChild(i).gameObject.AddComponent<Rigidbody2D>();
+                    transform.GetChild(i).gameObject.tag = "drop";
+                    transform.GetChild(i).gameObject.AddComponent<Rigidbody2D>();
                 }
             }
         }
         else
         {
             // 이후에 발생하는 충돌에는 고정된 좌표로 고정
-            transform.position = fixedPos;
+            //transform.position = fixedPos;
         }
     }
 
