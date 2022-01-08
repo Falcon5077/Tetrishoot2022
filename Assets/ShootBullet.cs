@@ -29,12 +29,14 @@ public class ShootBullet : MonoBehaviour
     }
     public void StartTouch(){
         isShoot = true;
+        DragMouse();
         StartCoroutine("SpawnBullet");
     }
     public void StopTouch(){
         isShoot = false;
     }
-    public void Text()
+    
+    public void DragMouse()
     {
         Vector3 MousePosition = Input.mousePosition;
         MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
@@ -43,7 +45,7 @@ public class ShootBullet : MonoBehaviour
         v = joystick.Direction.y;
         Debug.Log(h + " / " + v);
 
-        if(v > 0){
+        if(v >= -0.1f){
             transform.position = new Vector3(MousePosition.x,-10,0);
         }
         

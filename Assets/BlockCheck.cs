@@ -11,6 +11,8 @@ public class BlockCheck : MonoBehaviour
     void Start()
     {
         //Invoke("Shoot",0.5f);
+        
+        StartCoroutine("CheckBlock");
     }
 
     // Update is called once per frame
@@ -21,13 +23,13 @@ public class BlockCheck : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position,Vector2.right * 15,15,layerMask);
 
         if(hit.collider != null){
-            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ray") && hit.collider.tag == "drop")
+            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ray") && (hit.collider.tag == "drop2"))
             {
                 hit.collider.gameObject.layer = 9;
                 block.Add(hit.collider.gameObject);
             }
-            Debug.DrawLine(transform.position,hit.point);
         }
+
         
         if(block.Count >= 11)
         {
@@ -35,9 +37,27 @@ public class BlockCheck : MonoBehaviour
             {
                 Destroy(block[i]);
             }
-            
             block.Clear();
+            Camera.main.transform.position += new Vector3(0,1,0);
         }
+
+        
+        
+        
+    }
+
+
+    IEnumerator CheckBlock()    // 1초 간격으로 랜덤한 블럭 생성
+    {
+        for(int i = 0; i < block.Count; i++)
+        {
+            block[i].layer = 8;
+        }
+        block.Clear();
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine("CheckBlock");
     }
 
     public void Shoot()

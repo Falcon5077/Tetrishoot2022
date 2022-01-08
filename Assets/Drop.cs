@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Drop : MonoBehaviour
 {
     public GameObject[] child;
@@ -10,7 +11,7 @@ public class Drop : MonoBehaviour
     public int BlockType; // 오른쪽으로 몇 칸 튀어 나왔는지 체크하기 위한 블록 타입
     public bool isHit;
     public Vector3 fixedPos;
-    // Start is called before the first frame update
+
     void Start()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,-Gravity); // 가속도 없는 중력
@@ -19,9 +20,14 @@ public class Drop : MonoBehaviour
             // 자식 오브젝트의 box colider를 스크립트로 지정, 변동될 가능성있기때문
             transform.GetChild(i).GetComponent<BoxCollider2D>().size = new Vector2(boxSize,boxSize);
         }
-        
     }
 
+    private void Update() {
+        if(transform.childCount == 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "bullet")
         {
@@ -57,6 +63,7 @@ public class Drop : MonoBehaviour
                     transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.black;
                     transform.GetChild(i).gameObject.tag = "drop";
                     transform.GetChild(i).gameObject.AddComponent<Rigidbody2D>();
+                    transform.GetChild(i).gameObject.AddComponent<Land>();
                 }
             }
         }
@@ -195,6 +202,6 @@ public class Drop : MonoBehaviour
                 break;
         }
         transform.rotation = Quaternion.Euler(new Vector3(0,0,way * 90));
-        transform.position = new Vector2(Random.Range(minX,maxX+1),10);
+        transform.position = new Vector2(Random.Range(minX,maxX+1),Camera.main.transform.position.y + 15);
     }
 }
