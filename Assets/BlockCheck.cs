@@ -7,6 +7,8 @@ public class BlockCheck : MonoBehaviour
     public GameObject Checker;
     
     public List<GameObject> block = new List<GameObject>();
+
+    public bool isCheck = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,27 +20,46 @@ public class BlockCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isCheck == false)
+        {
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Land.LineClear = true;
+        }
+
         int layerMask = 1 << LayerMask.NameToLayer("Ray");
         
-        RaycastHit2D hit = Physics2D.Raycast(transform.position,Vector2.right * 15,15,layerMask);
-
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,Vector2.right * 25,25,layerMask);
+        
         if(hit.collider != null){
+            Debug.DrawLine(transform.position,hit.point);
             if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ray") && (hit.collider.tag == "drop2"))
             {
                 hit.collider.gameObject.layer = 9;
                 block.Add(hit.collider.gameObject);
             }
+
+            if(block.Count < 9){
+                if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ray") && hit.collider.tag == "Wall")
+                {
+                    StartCoroutine("CheckBlock");
+                }
+            }
         }
 
         
-        if(block.Count >= 11)
+        if(block.Count >= 9)
         {
             for(int i = 0; i < block.Count; i++)
             {
                 Destroy(block[i]);
             }
             block.Clear();
-            Camera.main.transform.position += new Vector3(0,1,0);
+            Land.LineClear = true;
+            StartCoroutine("DrawLine");
+            //Camera.main.transform.position += new Vector3(0,1,0);
         }
 
         
@@ -46,8 +67,14 @@ public class BlockCheck : MonoBehaviour
         
     }
 
+    IEnumerator DrawLine()
+    {
+        isCheck = false;
+        yield return new WaitForSeconds(1f);
+        isCheck = true;
+    }
 
-    IEnumerator CheckBlock()    // 1초 간격으로 랜덤한 블럭 생성
+    IEnumerator CheckBlock()
     {
         for(int i = 0; i < block.Count; i++)
         {
@@ -57,7 +84,7 @@ public class BlockCheck : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        StartCoroutine("CheckBlock");
+        //StartCoroutine("CheckBlock");
     }
 
     public void Shoot()

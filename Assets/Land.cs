@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Land : MonoBehaviour
 {
+    
+    public static bool LineClear = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +20,34 @@ public class Land : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(GetComponent<Rigidbody2D>().velocity == Vector2.zero)
         {
             transform.tag = "drop2";
         }
+
+        if(LineClear == true)
+        {
+            StartCoroutine("Gravity");
+        }
+    }
+
+    IEnumerator Gravity()
+    {
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;    
+        yield return new WaitForSeconds(1f);
+        LineClear = false;
+        while(true)
+        {
+            if(GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            {
+                break;
+            }
+            else
+                LineClear = true;
+            yield return null;
+        }
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+
     }
 }

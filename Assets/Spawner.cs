@@ -9,9 +9,16 @@ public class Spawner : MonoBehaviour
     public int nextBlock;
     public float minX;
     public float maxX;
+    public List<GameObject> Check = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            Check.Add(transform.GetChild(i).gameObject);
+            Check[i].transform.localPosition = new Vector3(-7.5f,0.95f * (i+1), 0);
+
+        }
         StartCoroutine("SpawnBlock");
     }
 
