@@ -64,6 +64,8 @@ public class Drop : MonoBehaviour
                     transform.GetChild(i).gameObject.tag = "drop";
                     transform.GetChild(i).gameObject.AddComponent<Rigidbody2D>();
                     transform.GetChild(i).gameObject.AddComponent<Land>();
+                    Destroy(transform.GetChild(i).gameObject.GetComponent<HeartPoint>());
+                    Destroy(transform.GetChild(i).gameObject.GetComponent<HeartPoint>().mHP);
                 }
             }
         }

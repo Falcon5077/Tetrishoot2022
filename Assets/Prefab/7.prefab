@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 9, z: -1.5934371}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6341636139438523244}
   - {fileID: 6341636140404907836}
@@ -86,6 +87,7 @@ GameObject:
   - component: {fileID: 6341636139438523244}
   - component: {fileID: 6341636139438523242}
   - component: {fileID: 6341636139438523243}
+  - component: {fileID: 6714675160896376358}
   m_Layer: 8
   m_Name: Block (1)
   m_TagString: Untagged
@@ -103,6 +105,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6341636138889373840}
   m_RootOrder: 0
@@ -118,10 +121,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -183,6 +188,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
+--- !u!114 &6714675160896376358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341636139438523245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da2bcd56e575448284a221a6e4409fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  hpText: {fileID: 330940286530512009, guid: 151661e1402844b0d8a0c16faed52f31, type: 3}
+  mHP: {fileID: 0}
+  mCanvas: {fileID: 0}
 --- !u!1 &6341636139499413554
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +215,7 @@ GameObject:
   - component: {fileID: 6341636139499413553}
   - component: {fileID: 6341636139499413567}
   - component: {fileID: 6341636139499413552}
+  - component: {fileID: 4751287183301930912}
   m_Layer: 8
   m_Name: Block (3)
   m_TagString: Untagged
@@ -211,6 +233,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6341636138889373840}
   m_RootOrder: 2
@@ -226,10 +249,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -291,6 +316,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
+--- !u!114 &4751287183301930912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341636139499413554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da2bcd56e575448284a221a6e4409fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  hpText: {fileID: 330940286530512009, guid: 151661e1402844b0d8a0c16faed52f31, type: 3}
+  mHP: {fileID: 0}
+  mCanvas: {fileID: 0}
 --- !u!1 &6341636140161613974
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +343,7 @@ GameObject:
   - component: {fileID: 6341636140161613973}
   - component: {fileID: 6341636140161613971}
   - component: {fileID: 6341636140161613972}
+  - component: {fileID: 440734241052728203}
   m_Layer: 8
   m_Name: Block (4)
   m_TagString: Untagged
@@ -319,6 +361,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6341636138889373840}
   m_RootOrder: 3
@@ -334,10 +377,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -399,6 +444,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
+--- !u!114 &440734241052728203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341636140161613974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da2bcd56e575448284a221a6e4409fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  hpText: {fileID: 330940286530512009, guid: 151661e1402844b0d8a0c16faed52f31, type: 3}
+  mHP: {fileID: 0}
+  mCanvas: {fileID: 0}
 --- !u!1 &6341636140404907837
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +471,7 @@ GameObject:
   - component: {fileID: 6341636140404907836}
   - component: {fileID: 6341636140404907834}
   - component: {fileID: 6341636140404907835}
+  - component: {fileID: 7678587602754914218}
   m_Layer: 8
   m_Name: Block (2)
   m_TagString: Untagged
@@ -427,6 +489,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6341636138889373840}
   m_RootOrder: 1
@@ -442,10 +505,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -507,3 +572,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
+--- !u!114 &7678587602754914218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341636140404907837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da2bcd56e575448284a221a6e4409fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  hpText: {fileID: 330940286530512009, guid: 151661e1402844b0d8a0c16faed52f31, type: 3}
+  mHP: {fileID: 0}
+  mCanvas: {fileID: 0}

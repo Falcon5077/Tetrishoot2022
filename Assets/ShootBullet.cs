@@ -21,10 +21,10 @@ public class ShootBullet : MonoBehaviour
     public void Shoot()
     {
         GameObject temp = Instantiate(bullet,transform.position,Quaternion.identity);
-        if(v < 0){
-            float angle = Mathf.Atan2(h,-v) * Mathf.Rad2Deg;
-            temp.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
-        }
+        // if(v < 0){
+        //     float angle = Mathf.Atan2(h,-v) * Mathf.Rad2Deg;
+        //     temp.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
+        // }
         Destroy(temp,5f);
     }
     public void StartTouch(){
@@ -45,9 +45,10 @@ public class ShootBullet : MonoBehaviour
         v = joystick.Direction.y;
         Debug.Log(h + " / " + v);
 
-        if(v >= -0.1f){
-            transform.position = new Vector3(MousePosition.x,-10,0);
-        }
+        transform.position = new Vector3(MousePosition.x,-10,0);
+        // if(v >= -0.1f){
+        //     transform.position = new Vector3(MousePosition.x,-10,0);
+        // }
         
     }
 

@@ -9,6 +9,8 @@ public class Land : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        GetComponent<BoxCollider2D>().size = new Vector2(0.95f,0.98f);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,-3); // 가속도 없는 중력
         Debug.Log(transform.parent.childCount);
         if(transform.parent.childCount == 4)
@@ -34,6 +36,8 @@ public class Land : MonoBehaviour
 
     IEnumerator Gravity()
     {
+        
+        GetComponent<BoxCollider2D>().size = new Vector2(0.95f,0.98f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;    
         yield return new WaitForSeconds(1f);
         LineClear = false;
