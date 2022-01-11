@@ -24,15 +24,25 @@ public class Land : MonoBehaviour
     void Update()
     {
         
-        if(GetComponent<Rigidbody2D>().velocity == Vector2.zero)    // 떨어지는 중이 아니라면 drop2로 tag 변경
+        if(GetComponent<Rigidbody2D>().velocity.magnitude < 0.1f)    // 떨어지는 중이 아니라면 drop2로 tag 변경
         {
             transform.tag = "drop2";
+        }
+        else if(GetComponent<Rigidbody2D>().velocity.magnitude > 0.1f)
+        {
+            transform.tag = "drop";
         }
 
         if(LineClear == true && !isGravity)   // 라인 클리어시 중력 적용
         {
             StartCoroutine("Gravity");
         }
+    }
+
+    public void DestroyEachOther(GameObject temp)
+    {
+        Destroy(this.gameObject);
+        Destroy(temp);
     }
 
     IEnumerator Gravity()
@@ -44,7 +54,7 @@ public class Land : MonoBehaviour
         LineClear = false;
         while(true)
         {
-            if(GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            if(GetComponent<Rigidbody2D>().velocity.magnitude < 0.1f)
             {
                 break;
             }
@@ -57,6 +67,7 @@ public class Land : MonoBehaviour
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
         isGravity = false;
+        //LineClear = false;
     }
 
     public void rePosition()

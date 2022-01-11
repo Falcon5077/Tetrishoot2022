@@ -8,17 +8,24 @@ public class BlockCheck : MonoBehaviour
     public List<GameObject> block = new List<GameObject>(); // ray에 닿은 블럭들을 저장하는 List
 
     public static bool isCheck = true; // 현재 ray를 쐈는지
-
-    // Start is called before the first frame update
-    void Start()
+    public bool myCheck = true;
+    public static BlockCheck instance;
+    public float delay = 0f;
+    private void Awake() {
+        instance = this;
+    }
+    
+    public void EarthQuake()
     {
-        //StartCoroutine("ClearBlock");
+        iTween.ShakePosition(Camera.main.gameObject, new Vector3(0.1f,0.1f,0),0.5f);
+        Land.LineClear = true;
+        StartCoroutine("DelayLine");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isCheck == false)
+        if(isCheck == false || myCheck == false)
         {
             StartCoroutine("ClearBlock");
             return;
@@ -26,8 +33,7 @@ public class BlockCheck : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Land.LineClear = true;
-            StartCoroutine("DelayLine");
+            EarthQuake();
         }
 
         // Ray(8) 레이어만 닿는 raycast를 발사
@@ -82,19 +88,16 @@ public class BlockCheck : MonoBehaviour
             StartCoroutine("DelayLine");
             //Camera.main.transform.position += new Vector3(0,1,0);
         }
-        
-
-        
-        
-        
     }
 
     IEnumerator DelayLine()
     {
         isCheck = false;
+        myCheck = false;
         
         StartCoroutine("ClearBlock");
         yield return new WaitForSeconds(1f);
+        
         isCheck = true;
     }
 
@@ -102,12 +105,15 @@ public class BlockCheck : MonoBehaviour
     {
         for(int i = 0; i < block.Count; i++)
         {
-            block[i].layer = 8; // ray를 다시 맞추기위해서 레이어를 Hit에서 Ray로 변경
+            if(block[i] != null)
+                block[i].layer = 8; // ray를 다시 맞추기위해서 레이어를 Hit에서 Ray로 변경
         }
         
         block.Clear(); // List 초기화
 
         yield return new WaitForSeconds(1.5f);
+
+        myCheck = true;
 
         //StartCoroutine("CheckBlock");
     }

@@ -24,7 +24,8 @@ public class SideDestroy : MonoBehaviour
             Debug.DrawLine(transform.position,hit.point);
 
             LaserParticle.transform.position = hit.point;
-            LaserParticle.GetComponent<ParticleSystem>().Play();
+            if(!LaserParticle.GetComponent<ParticleSystem>().isPlaying)
+                LaserParticle.GetComponent<ParticleSystem>().Play();
 
             if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ray") && (hit.collider.tag == "drop2"))
             {
@@ -36,7 +37,8 @@ public class SideDestroy : MonoBehaviour
                 StartCoroutine("Laser",hit.collider.gameObject);
         }
         else{            
-            LaserParticle.GetComponent<ParticleSystem>().Stop();
+            if(LaserParticle.GetComponent<ParticleSystem>().isPlaying)
+                LaserParticle.GetComponent<ParticleSystem>().Stop();
             GetComponent<LineRenderer>().SetPosition(1,transform.position);
         }
     }
@@ -48,7 +50,7 @@ public class SideDestroy : MonoBehaviour
         if(hitcollider == null)
             yield break;
 
-        if(hitcollider.transform.position.y < 9)
+        if(hitcollider.transform.position.y < 9 && hitcollider.GetComponent<HeartPoint>() != null)
             hitcollider.GetComponent<HeartPoint>().HeartCalc(1);
         yield return new WaitForSeconds(0.2f);
 

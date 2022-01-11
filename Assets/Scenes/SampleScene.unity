@@ -170,6 +170,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &38735282
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +219,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &58154092
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15578b8b365e0d4f80ae489975afd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mGravity: 0
   SpawnDelay: 3
   Block:
   - {fileID: 7474814352862020201, guid: ae205e606c8bbf043920864f8d0f2a11, type: 3}
@@ -294,9 +299,8 @@ Transform:
   - {fileID: 1574561258}
   - {fileID: 1252491807}
   - {fileID: 1853706679}
-  - {fileID: 924294539}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &58154095
 MonoBehaviour:
@@ -319,6 +323,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0065d68611ec0f64b98aead250f33a37, type: 3}
   - {fileID: 21300000, guid: 91fbf2fe786119546944df8d2d97a0bb, type: 3}
   - {fileID: 21300000, guid: 5c4e9ece6c7bd664b88b9b4406b57c60, type: 3}
+  - {fileID: 21300000, guid: c8a970fd03b122940849eca488482602, type: 3}
 --- !u!114 &58154096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +369,7 @@ Transform:
   - {fileID: 695478313}
   - {fileID: 1795361693}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &60799495
 MonoBehaviour:
@@ -526,6 +531,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!850595691 &136424789
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -635,6 +642,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &203951589
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +691,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &204976863
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +740,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1001 &275881278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -920,6 +933,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &496460809
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +1000,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -1104,7 +1119,7 @@ Transform:
   - {fileID: 1714224917}
   - {fileID: 6748963347111772583}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &580480797
 MonoBehaviour:
@@ -1266,6 +1281,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &695478312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,6 +1413,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &924294538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,13 +1438,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924294538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 58154094}
-  m_RootOrder: 21
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044951779
 GameObject:
@@ -1474,6 +1493,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1060617288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,7 +1525,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1060617290
 MonoBehaviour:
@@ -1573,6 +1594,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1166636664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1754,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1252491806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,6 +1803,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1460694523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1852,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1521002115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8501680759082316888, guid: 9b5f3bd1be2ef7c49aba35e4e4b97095,
@@ -1988,6 +2017,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1714224916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,6 +2149,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1734685881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2246,7 @@ RectTransform:
   - {fileID: 2098157260}
   - {fileID: 2087541243}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2267,6 +2300,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1001 &1795361692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2419,6 +2454,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1888680037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2503,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &1961164326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,6 +2552,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &2085813634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,6 +2601,8 @@ MonoBehaviour:
   exploParticle: {fileID: 8445266398447648415, guid: 07d446e362f0d3c458fc4c57b28e89a0,
     type: 3}
   block: []
+  myCheck: 1
+  delay: 0
 --- !u!1 &2087541242
 GameObject:
   m_ObjectHideFlags: 0
