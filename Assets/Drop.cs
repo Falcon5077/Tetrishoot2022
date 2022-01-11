@@ -213,7 +213,8 @@ public class Drop : MonoBehaviour
         {
             transform.GetChild(i).rotation = Quaternion.Euler(0,0,-90*way);
             SpriteRenderer mRen = transform.GetChild(i).GetComponent<SpriteRenderer>();
-            ImageManager.instance.SetImage(mColor,mRen);
+            if(ImageManager.instance != null)
+                ImageManager.instance.SetImage(mColor,mRen);
         }
         transform.rotation = Quaternion.Euler(new Vector3(0,0,way * 90));
         transform.position = new Vector2(Random.Range(minX,maxX+1),Camera.main.transform.position.y + 15);
