@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SideDestroy : MonoBehaviour
 {
+    public GameObject LaserParticle;
     // Start is called before the first frame update
     public bool isLaser = true;
     void Start()
     {
+        LaserParticle.GetComponent<ParticleSystem>().Stop();
         GetComponent<LineRenderer>().SetPosition(0,transform.position + new Vector3(0,0.5f,0));
     }
 
@@ -20,6 +22,10 @@ public class SideDestroy : MonoBehaviour
         
         if(hit.collider != null){
             Debug.DrawLine(transform.position,hit.point);
+
+            LaserParticle.transform.position = hit.point;
+            LaserParticle.GetComponent<ParticleSystem>().Play();
+
             if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ray") && (hit.collider.tag == "drop2"))
             {
                 Destroy(hit.collider.gameObject);
@@ -29,7 +35,8 @@ public class SideDestroy : MonoBehaviour
             if(isLaser == true)
                 StartCoroutine("Laser",hit.collider.gameObject);
         }
-        else{
+        else{            
+            LaserParticle.GetComponent<ParticleSystem>().Stop();
             GetComponent<LineRenderer>().SetPosition(1,transform.position);
         }
     }
@@ -43,7 +50,7 @@ public class SideDestroy : MonoBehaviour
 
         if(hitcollider.transform.position.y < 9)
             hitcollider.GetComponent<HeartPoint>().HeartCalc(1);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
 
         isLaser = true;
     }

@@ -16,12 +16,13 @@ public class ShootBullet : MonoBehaviour
     void Start()
     {
         StartCoroutine("SpawnBullet");
+
     }
 
     public void Shoot()
     {
         GameObject temp = Instantiate(bullet,transform.position,Quaternion.identity);
-        // if(v < 0){
+        // if(v < 0){   // 아래로 당겼을 때는 위치를 고정하고 각도조절하여 발사
         //     float angle = Mathf.Atan2(h,-v) * Mathf.Rad2Deg;
         //     temp.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
         // }
@@ -43,10 +44,11 @@ public class ShootBullet : MonoBehaviour
 
         h = joystick.Direction.x;
         v = joystick.Direction.y;
-        Debug.Log(h + " / " + v);
+        //Debug.Log(h + " / " + v);
 
         transform.position = new Vector3(MousePosition.x,-10,0);
-        // if(v >= -0.1f){
+
+        // if(v >= -0.1f){  // 위로 당겼을때만 포지션 이동
         //     transform.position = new Vector3(MousePosition.x,-10,0);
         // }
         

@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
-    public GameObject[] child;
     public float boxSize = 0.95f;
     public float Gravity; // 중력
     public int BlockType; // 오른쪽으로 몇 칸 튀어 나왔는지 체크하기 위한 블록 타입
     public bool isHit;
     public Vector3 fixedPos;
 
+    public string myColor;
+    public int mWay;
     void Start()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,-Gravity); // 가속도 없는 중력
@@ -43,7 +44,7 @@ public class Drop : MonoBehaviour
             zr = System.Math.Truncate(zr*10)/10;
 
             // 위치와 각도를 교정 (소수점 한자리 수 까지)
-            transform.position = new Vector3(((float)x),((float)y),0);
+            //transform.position = new Vector3(((float)x),((float)y),0);
             transform.rotation = Quaternion.Euler(new Vector3(0,0,((float)zr)));
 
             // 중력 제거, 위치 고정
@@ -60,7 +61,8 @@ public class Drop : MonoBehaviour
             for(int i = 0; i < transform.childCount; i++)
             {
                 if(transform.GetChild(i) != null){
-                    transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.black;
+                    ImageManager.instance.SetImage(0,transform.GetChild(i).GetComponent<SpriteRenderer>());
+                    //transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.black;
                     transform.GetChild(i).gameObject.tag = "drop";
                     transform.GetChild(i).gameObject.AddComponent<Rigidbody2D>();
                     transform.GetChild(i).gameObject.AddComponent<Land>();
@@ -83,6 +85,8 @@ public class Drop : MonoBehaviour
         int way = 0;
         int minX = 0;
         int maxX = 0;
+        int mColor = Random.Range(1,8);
+
         switch(a)
         {
             case 0:
@@ -202,6 +206,14 @@ public class Drop : MonoBehaviour
                     maxX = 5;
                 }
                 break;
+        }
+        mWay = way;
+        myColor = mColor.ToString();
+        for(int i = 0; i < 4; i++)
+        {
+            transform.GetChild(i).rotation = Quaternion.Euler(0,0,-90*way);
+            SpriteRenderer mRen = transform.GetChild(i).GetComponent<SpriteRenderer>();
+            ImageManager.instance.SetImage(mColor,mRen);
         }
         transform.rotation = Quaternion.Euler(new Vector3(0,0,way * 90));
         transform.position = new Vector2(Random.Range(minX,maxX+1),Camera.main.transform.position.y + 15);

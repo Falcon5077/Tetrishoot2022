@@ -6,14 +6,15 @@ public class Land : MonoBehaviour
 {
     
     public static bool LineClear = false;
+    public bool isGravity = false;
     // Start is called before the first frame update
     void Start()
     {
-        
         GetComponent<BoxCollider2D>().size = new Vector2(0.95f,0.98f);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,-3); // 가속도 없는 중력
-        Debug.Log(transform.parent.childCount);
-        if(transform.parent.childCount == 4)
+
+        // 블럭이 온전하면 고정 아니라면 중력 적용
+        if(transform.parent.childCount == 4)    
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         else
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
@@ -23,12 +24,12 @@ public class Land : MonoBehaviour
     void Update()
     {
         
-        if(GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+        if(GetComponent<Rigidbody2D>().velocity == Vector2.zero)    // 떨어지는 중이 아니라면 drop2로 tag 변경
         {
             transform.tag = "drop2";
         }
 
-        if(LineClear == true)
+        if(LineClear == true && !isGravity)   // 라인 클리어시 중력 적용
         {
             StartCoroutine("Gravity");
         }
@@ -36,7 +37,7 @@ public class Land : MonoBehaviour
 
     IEnumerator Gravity()
     {
-        
+        isGravity = true;
         GetComponent<BoxCollider2D>().size = new Vector2(0.95f,0.98f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;    
         yield return new WaitForSeconds(1f);
@@ -47,11 +48,25 @@ public class Land : MonoBehaviour
             {
                 break;
             }
-            else
+            else{
                 LineClear = true;
+            }
+            
             yield return null;
         }
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
+        isGravity = false;
+    }
+
+    public void rePosition()
+    {
+        double x = transform.position.x;    // x,y 좌표 저장
+        double y = transform.position.y;
+        x = System.Math.Truncate(x*10)/10;  // 소수점 제거 후
+        y = System.Math.Truncate(y*10)/10;  // 소수점 제거 후
+
+        // 위치와 각도를 교정 (소수점 한자리 수 까지)
+        transform.position = new Vector3(((float)x),((float)y),0);
     }
 }
