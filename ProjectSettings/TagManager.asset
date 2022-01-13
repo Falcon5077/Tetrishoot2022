@@ -8,6 +8,8 @@ TagManager:
   - bottom
   - Tetri
   - BotWal
+  - obstacle
+  - ' obstacle'
   layers:
   - Default
   - TransparentFX
