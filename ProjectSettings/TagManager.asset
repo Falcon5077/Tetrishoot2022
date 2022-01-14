@@ -9,6 +9,11 @@ TagManager:
   - drop
   - Wall
   - drop2
+  - bottom
+  - Tetris
+  - Plane
+  - lazer
+  - HP_BAR
   layers:
   - Default
   - TransparentFX

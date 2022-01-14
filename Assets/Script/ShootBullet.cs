@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ShootBullet : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class ShootBullet : MonoBehaviour
         Destroy(temp,5f);
     }
     public void StartTouch(){
+
         isShoot = true;
         DragMouse();
         StartCoroutine("SpawnBullet");

@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BlockCheck : MonoBehaviour
 {
+    AboveAll ab;
+    HpBar hp;
+    public int updateScore = 10; //하나 부술 때 올라가는 스코어
+    public float updateTime = 10.0f;//한 줄 부술 때 올라가는 시간 
+
     public GameObject exploParticle;    // 폭발 파티클
     public List<GameObject> block = new List<GameObject>(); // ray에 닿은 블럭들을 저장하는 List
 
@@ -14,6 +21,14 @@ public class BlockCheck : MonoBehaviour
     private void Awake() {
         instance = this;
     }
+
+    void Start() {
+        ab = GameObject.Find("GameManager").GetComponent<AboveAll>();
+        hp = GameObject.Find("Image").GetComponent<HpBar>();
+    }
+
+ 
+
     
     public void EarthQuake()
     {
@@ -83,6 +98,8 @@ public class BlockCheck : MonoBehaviour
 
             block.Clear();  // List 초기화
             Land.LineClear = true;  // 땅에 떨어져서 Land.cs를 가지고 있는 오브젝트에게 LineClear를 알림
+            ab.totScore += updateScore;
+            hp.curHp += updateTime;
 
             // Check를 1초간 휴식 -> 라인을 클리어하고 블럭들이 떨어짐을 기다리기 위함
             StartCoroutine("DelayLine");

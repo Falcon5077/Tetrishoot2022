@@ -53,6 +53,7 @@ public class Drop : MonoBehaviour
 
             // 교정한 현재 좌표를 fixedPos에 저장
             fixedPos = transform.position;
+            this.gameObject.tag = "bottom"; //멈출 시 태그를 bottom으로 변경
 
             // 최초 충돌 동작 완료
             isHit = true;
