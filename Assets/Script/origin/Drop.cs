@@ -15,12 +15,13 @@ public class Drop : MonoBehaviour
     public int mWay;
     void Start()
     {
-        Gravity = Spawner.instance.mGravity + Random.Range(0.1f,0.5f);
+        Gravity = Spawner.instance.mGravity; // + Random.Range(0.1f,0.5f);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,-Gravity); // 가속도 없는 중력
         for(int i = 0; i < transform.childCount; i++)
         {
             // 자식 오브젝트의 box colider를 스크립트로 지정, 변동될 가능성있기때문
-            transform.GetChild(i).GetComponent<BoxCollider2D>().size = new Vector2(boxSize,boxSize);
+            if(transform.GetChild(i).GetComponent<BoxCollider2D>() != null)
+                transform.GetChild(i).GetComponent<BoxCollider2D>().size = new Vector2(boxSize,boxSize);
         }
     }
 

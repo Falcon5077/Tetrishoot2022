@@ -15,7 +15,7 @@ public class Above : MonoBehaviour
     void Awake()
     {
         instance = this;
-        UpTime = 20;
+        UpTime = Spawner.instance.specialBlockTime[TimeType.FloorSpawn]; // 15
         count = 0;
     }
     public void AboveStart()
@@ -59,6 +59,8 @@ public class Above : MonoBehaviour
             yield return new WaitForSeconds(0.1f);  //시간이 되면 바닥 올리기
         }
         
+        if(UpTime > 18)
+            UpTime -= 1;
 
         if(Time.timeScale != 0){
             BlockCheck.instance.DelayCheck();

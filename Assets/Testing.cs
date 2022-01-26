@@ -9,7 +9,13 @@ public class Testing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+    }
+
+    public void SetValue()
+    {
+        SetAboveTime(0);
+        SetSpawnTime(0);
+        SetDropTime(0);
     }
 
     // Update is called once per frame

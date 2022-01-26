@@ -15,10 +15,10 @@ public class Drop_2 : MonoBehaviour
     public int mWay;
     void Start()
     {
-        Gravity = Spawner.instance.mGravity + Random.Range(0.1f,0.5f);
+        Gravity = Spawner.instance.mGravity; // + Random.Range(0.1f,0.5f);
         if(GetComponent<SpecialBlock>().blockType == 5)
         {
-            Gravity += 3f;
+            Gravity += 1.5f;
         }
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,-Gravity); // 가속도 없는 중력
         for(int i = 0; i < 4; i++)
@@ -55,7 +55,7 @@ public class Drop_2 : MonoBehaviour
                     if(other.gameObject.tag == "drop" || other.gameObject.tag == "drop2")
                     {
                         Destroy(other.gameObject);
-                        transform.GetChild(3).GetComponent<HeartPoint>().HeartCalc(5);
+                        //transform.GetChild(3).GetComponent<HeartPoint>().HeartCalc(5);
 
                         // 드릴 이펙트
                         

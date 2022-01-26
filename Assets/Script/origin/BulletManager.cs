@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class BulletManager : MonoBehaviour
 {
     public int power = 1;
@@ -23,7 +23,15 @@ public class BulletManager : MonoBehaviour
             if(other.gameObject.transform.parent.GetComponent<Drop>().isHit == false)   // 땅에 떨어진 블럭이 아니라면, 즉 떨어지고 있는 블럭이라면
             {
                 AudioManager.instance.HitSound();
-                other.gameObject.GetComponent<HeartPoint>().HeartCalc(power);   // 체력 감소
+
+                if(other.gameObject.transform.parent.childCount <= 2 && Spawner.instance.isHard == true)
+                {
+                    other.gameObject.GetComponent<HeartPoint>().HeartCalc(0);   // 체력 감소
+                }
+                else
+                {
+                    other.gameObject.GetComponent<HeartPoint>().HeartCalc(power);   // 체력 감소
+                }
                 power = 0;  // 여러 블럭 충돌 방지
 
                 Color mColor = new Color(0,0,0,1);
@@ -42,7 +50,14 @@ public class BulletManager : MonoBehaviour
             if(other.gameObject.transform.parent.GetComponent<Drop_2>().isHit == false)   // 땅에 떨어진 블럭이 아니라면, 즉 떨어지고 있는 블럭이라면
             {
                 AudioManager.instance.HitSound();
-                other.gameObject.GetComponent<HeartPoint>().HeartCalc(power);   // 체력 감소
+                if(other.gameObject.transform.parent.childCount <= 2 && Spawner.instance.isHard == true)
+                {
+                    other.gameObject.GetComponent<HeartPoint>().HeartCalc(0);   // 체력 감소
+                }
+                else
+                {
+                    other.gameObject.GetComponent<HeartPoint>().HeartCalc(power);   // 체력 감소
+                }
                 power = 0;  // 여러 블럭 충돌 방지
 
                 Color mColor = new Color(0,0,0,1);

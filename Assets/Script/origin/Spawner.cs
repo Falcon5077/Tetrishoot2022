@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public class TimeType{
+    public const int BombSpawn = 0;
+    public const int BombSize = 1;
+    public const int FloorSpawn = 2;
+    public const int GravitySize = 3;
+    public const int SpawnSize = 4;
+    public const int DrillSpawn = 5;
+    public const int QuakeSpawn = 6;
+}
 public class Spawner : MonoBehaviour
 {
+    public bool isHard = false;
     public static Spawner instance;
     public float mGravity;
     public int defaultHP;
@@ -14,13 +23,25 @@ public class Spawner : MonoBehaviour
     public float minX;
     public float maxX;
     public List<GameObject> Check = new List<GameObject>();
-    // Start is called before the first frame update
 
+    public float[] specialBlockTime = new float[5];
+    // Start is called before the first frame update
+    public void SetMode()
+    {
+        isHard = !isHard;
+    }
     private void Awake() {
         instance = this;
-        mGravity = 3.5f;
+        mGravity = 2.5f;
         defaultHP = 3;
         Time.timeScale = 1;
+        specialBlockTime[TimeType.BombSpawn] = 25;
+        specialBlockTime[TimeType.BombSize] = 3;
+        specialBlockTime[TimeType.FloorSpawn] = 30;
+        specialBlockTime[TimeType.GravitySize] = 3.5f;
+        specialBlockTime[TimeType.SpawnSize] = 3;
+        specialBlockTime[TimeType.DrillSpawn] = 25;
+        specialBlockTime[TimeType.QuakeSpawn] = 25;
     }
     public void GameStart()
     {
@@ -33,7 +54,6 @@ public class Spawner : MonoBehaviour
         }
         StartCoroutine("SpawnBlock");
         StartCoroutine("Timer");
-
     }
     void Start()
     {
@@ -47,30 +67,54 @@ public class Spawner : MonoBehaviour
     {
         defaultHP = 3;
         MaxHP = 3;
+        Above.instance.UpTime = 30;
 
-        for(int i = 0; i < 120; i++)
+        for(int i = 0; i < 300; i++)
         {
-            if((i+1) % 60 == 0)
+            if((i+1) % 25 == 0)
+            {
+                SpawnDelay -= 0.1f;
+                Debug.Log((i+1) + "초 마다 감소 중" + SpawnDelay);
+            }
+            if((i+1) % 25 == 0)
+            {
+                mGravity += 0.1f;
+                Debug.Log((i+1) + "초 마다 가속 중" + mGravity);
+            }
+            if(i == 120)
             {
                 MaxHP += 1;
             }
+            if(i == 180)
+            {
+                MaxHP += 1;
+            }
+            if(i == 150)
+            {
+                 
+            }
+            // if((i+1) % 60 == 0)
+            // {
+            //     MaxHP += 1;
+            // }
             defaultHP = Random.Range(2,MaxHP+1);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1f);
+            
         }
 
         while(true)
         {
-            int p = Random.Range(0,100);
-            if(p > 60)
-                defaultHP = 5;
-            else if(p > 40)
-                defaultHP = 4;
-            else if(p > 20)
-                defaultHP = 3;
-            else if(p > 0)
-                defaultHP = 2;
-            
-            yield return new WaitForSeconds(0.1f);
+            defaultHP = Random.Range(2,MaxHP+1);
+            // int p = Random.Range(0,100);
+            // if(p > 60)
+            //     defaultHP = 5;
+            // else if(p > 40)
+            //     defaultHP = 4;
+            // else if(p > 20)
+            //     defaultHP = 3;
+            // else if(p > 0)
+            //     defaultHP = 2;
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -118,7 +162,7 @@ public class Spawner : MonoBehaviour
         // 7이 나왔는데 p가 20이상이라면 nextBlock 새로 뽑기
         if(nextBlock == 7)
         {
-            if(p > 15)
+            if(p > specialBlockTime[TimeType.BombSpawn])
             {
                 while(nextBlock == 7)
                 {
@@ -129,14 +173,14 @@ public class Spawner : MonoBehaviour
 
         GameObject spawn = Instantiate(Block[nextBlock]);
 
-        if(nextBlock == 5 && p < 15)    //p  0 ~ 19 -> 20/100 확률
+        if(nextBlock == 5 && p < specialBlockTime[TimeType.QuakeSpawn])    //p  0 ~ 19 -> 20/100 확률
         {
             // 지진블럭 생성될 확률 로직 추가
             Destroy(spawn.GetComponent<Drop>());
             spawn.AddComponent<Drop_2>();
             spawn.GetComponent<Drop_2>().SetMyPosition(nextBlock);
         }
-        else if(nextBlock == 0 && p < 15) //p 0 ~ 49 -> 50/100 확률 -> 세로 블럭이 나왔을때 50%확률로 변경
+        else if(nextBlock == 0 && p < specialBlockTime[TimeType.QuakeSpawn]) //p 0 ~ 49 -> 50/100 확률 -> 세로 블럭이 나왔을때 50%확률로 변경
         {
             // 드릴블럭 생성될 확률 로직 추가
             Destroy(spawn.GetComponent<Drop>());

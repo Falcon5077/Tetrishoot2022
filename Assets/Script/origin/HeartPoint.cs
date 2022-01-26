@@ -34,6 +34,13 @@ public class HeartPoint : MonoBehaviour
         if(mHP == null)
             return;
 
+
+        int c = gameObject.transform.parent.childCount;
+        if(c <= 2 && Spawner.instance.isHard == true)
+        {
+            return;
+        }
+
         HP -= v;
 
         mHP.GetComponent<TextMeshProUGUI>().text = HP.ToString();
@@ -44,6 +51,16 @@ public class HeartPoint : MonoBehaviour
             Score.instance.ScoreUp(-10);
             Destroy(mHP);
             Destroy(this.gameObject);
+
+            if(c <= 3 && Spawner.instance.isHard == true)
+            {
+                for(int i = 0; i < c; i++)
+                {
+                    if(gameObject.transform.parent.GetChild(i).GetComponent<HeartPoint>() != null)
+                        gameObject.transform.parent.GetChild(i).GetComponent<HeartPoint>().mHP.GetComponent<TextMeshProUGUI>().text = "";
+                }
+                return;
+            }
         }
     }
 }

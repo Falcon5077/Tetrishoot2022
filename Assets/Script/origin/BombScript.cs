@@ -44,7 +44,7 @@ public class BombScript : MonoBehaviour
         Collider2D[] colls;
 
         // 반경 10f에 위치한 오브젝트들을 배열에 담는다
-        colls = Physics2D.OverlapCircleAll(new Vector2(transform.position.x,transform.position.y),3f);
+        colls = Physics2D.OverlapCircleAll(new Vector2(transform.position.x,transform.position.y),Spawner.instance.specialBlockTime[TimeType.BombSize]);
         
 
         // foreach문을 통해서 colls배열에 존재하는 각각에 폭발효과를 적용해준다.
@@ -81,6 +81,12 @@ public class BombScript : MonoBehaviour
                     Destroy(coll.GetComponent<Drop>());
                 else
                     Destroy(coll.GetComponent<Drop_2>());
+
+                for(int i = 0; i < coll.transform.parent.childCount; i++)
+                {
+                    if(coll.transform.parent.GetChild(i).GetComponent<HeartPoint>() != null)
+                        Destroy(coll.transform.parent.GetChild(i).GetComponent<HeartPoint>().mHP);
+                }
             }
         // 코드 정리.
         // 검출된 오브젝트들 중에서 8번 레이어에 속한 오브젝트 각각을,
