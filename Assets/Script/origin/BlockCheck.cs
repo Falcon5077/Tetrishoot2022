@@ -93,7 +93,7 @@ public class BlockCheck : MonoBehaviour
             StartCoroutine("DelayLine");
             Above.instance.DownBlock();
             //Above.instance.ScoreUp(100);
-            Score.instance.ScoreUp(100);
+            Score.instance.ScoreUp(200);
             //Camera.main.transform.position += new Vector3(0,1,0);
         }
     }

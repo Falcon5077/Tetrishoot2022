@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 public class TimeType{
     public const int BombSpawn = 0;
     public const int BombSize = 1;
@@ -23,7 +24,7 @@ public class Spawner : MonoBehaviour
     public float minX;
     public float maxX;
     public List<GameObject> Check = new List<GameObject>();
-
+    public TextMeshProUGUI mText;
     public float[] specialBlockTime = new float[5];
     // Start is called before the first frame update
     public void SetMode()
@@ -68,35 +69,28 @@ public class Spawner : MonoBehaviour
         defaultHP = 3;
         MaxHP = 3;
         Above.instance.UpTime = 30;
-
-        for(int i = 0; i < 300; i++)
+        
+        for(int i = 0; i < 180; i++)
         {
+            mText.text = i.ToString();
             if((i+1) % 25 == 0)
             {
-                SpawnDelay -= 0.1f;
+                SpawnDelay -= 0.2f;
                 Debug.Log((i+1) + "초 마다 감소 중" + SpawnDelay);
             }
             if((i+1) % 25 == 0)
             {
-                mGravity += 0.1f;
+                mGravity += 0.2f;
                 Debug.Log((i+1) + "초 마다 가속 중" + mGravity);
+            }
+            if(i == 60)
+            {
+                MaxHP += 1;
             }
             if(i == 120)
             {
                 MaxHP += 1;
             }
-            if(i == 180)
-            {
-                MaxHP += 1;
-            }
-            if(i == 150)
-            {
-                 
-            }
-            // if((i+1) % 60 == 0)
-            // {
-            //     MaxHP += 1;
-            // }
             defaultHP = Random.Range(2,MaxHP+1);
             yield return new WaitForSeconds(1f);
             
@@ -105,15 +99,6 @@ public class Spawner : MonoBehaviour
         while(true)
         {
             defaultHP = Random.Range(2,MaxHP+1);
-            // int p = Random.Range(0,100);
-            // if(p > 60)
-            //     defaultHP = 5;
-            // else if(p > 40)
-            //     defaultHP = 4;
-            // else if(p > 20)
-            //     defaultHP = 3;
-            // else if(p > 0)
-            //     defaultHP = 2;
             yield return new WaitForSeconds(1f);
         }
     }

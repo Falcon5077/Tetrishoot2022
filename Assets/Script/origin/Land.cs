@@ -14,8 +14,11 @@ public class Land : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(0,-3); // 가속도 없는 중력
 
         // 블럭이 온전하면 고정 아니라면 중력 적용
-        if(transform.parent.childCount == 4)    
+        if(transform.parent.childCount == 4){
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            Score.instance.ScoreUp(50);
+        }
+            
         else
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
     }
