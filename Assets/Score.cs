@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = 1000;
+        score = 0;
         instance = this;
         
     }
@@ -29,7 +29,7 @@ public class Score : MonoBehaviour
     public void ScoreUp(int a)
     {
         score += a;
-        string s = "Score : " + score.ToString("#,000");
+        string s = "Score : " + score.ToString("#,##0");
         
         if(score < 0)
         {

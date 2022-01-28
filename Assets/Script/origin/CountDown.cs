@@ -10,7 +10,22 @@ public class CountDown : MonoBehaviour
 
     private void Awake() {
         instance = this;
+        ShootBullet.canShoot = false;
+        SetMode();
         StartCoroutine("GameStart");
+    }
+
+    public void SetMode()
+    {
+        int a = PlayerPrefs.GetInt("Mode",1); // 1 노말 2 익스트림
+        if(a == 1)
+        {
+            Spawner.instance.isHard = true;
+        }   
+        else if(a == 2)
+        {
+            Spawner.instance.isHard = false;
+        }
     }
 
     IEnumerator CountStart()
@@ -37,10 +52,14 @@ public class CountDown : MonoBehaviour
         AudioManager.instance.ClearSound();
         yield return new WaitForSeconds(1f);
 
+        ShootBullet.canShoot = true;
+
         Spawner.instance.GameStart();
         Above.instance.AboveStart();
         Score.instance.ScoreUp(0);
         mText.text = "";
+
+        
     }
 
     IEnumerator GameStart()

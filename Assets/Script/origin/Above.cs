@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 public class Above : MonoBehaviour
 {
+    public TextMeshProUGUI mText;
     public Slider mSlider;
     public static Above instance;
     public GameObject planeObject;
@@ -49,6 +50,7 @@ public class Above : MonoBehaviour
 
     IEnumerator AboveBlock()
     {
+        int c = 0;
         float t = Mathf.Round(UpTime);
         Debug.Log(t);
         mSlider.maxValue = UpTime;
@@ -56,11 +58,13 @@ public class Above : MonoBehaviour
         for(int i = 0; i < t*10; i++)
         {
             mSlider.value -= 0.1f;
+            mSlider.value = Mathf.Round(mSlider.value * 10)/10;
+            mText.text = mSlider.value.ToString();
             yield return new WaitForSeconds(0.1f);  //시간이 되면 바닥 올리기
         }
         
-        if(UpTime > 18)
-            UpTime -= 1;
+        if(c++ < 4)
+            UpTime -= 3;
 
         if(Time.timeScale != 0){
             BlockCheck.instance.DelayCheck();

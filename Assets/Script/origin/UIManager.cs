@@ -11,9 +11,10 @@ public class UIManager : MonoBehaviour
     public Button quitBut;
     public Button resBut;
     public GameObject pause;
+    public int touchCount = 0;
     private bool isPause;
     int ClickCount;
-
+    public GameObject DevOption;
     public void reStartGame(){          //게임 재시작
         SceneManager.LoadScene("GameScene");  //시작 신을 다시 가지고 옵니다
         pause.SetActive(false);
@@ -22,16 +23,23 @@ public class UIManager : MonoBehaviour
         Debug.Log("resume");
     }
     public void pauseGame(){         //일시정지
-            Time.timeScale = 0;    //인게임 시간을 정지시킵니다
-            pause.SetActive(true);  //패널 생성
-            isPause = true;
-            Debug.Log("pause");
+        Time.timeScale = 0;    //인게임 시간을 정지시킵니다
+        pause.SetActive(true);  //패널 생성
+        isPause = true;
+        Debug.Log("pause");
+        touchCount++;
+        if(touchCount >= 10)
+        {
+            DevOption.SetActive(true);
+        }
     }
     public void Resume(){     //일시정지 해제
         pause.SetActive(false);  // 패널 안 보이게
-            Time.timeScale = 1;
-            isPause = false;
-            Debug.Log("resume");
+        Time.timeScale = 1;
+        isPause = false;
+        Debug.Log("resume");
+        if(touchCount < 8)
+            touchCount = 0;
     }
 
     public void Lobby()

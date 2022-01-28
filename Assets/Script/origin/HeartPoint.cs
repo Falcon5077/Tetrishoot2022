@@ -48,7 +48,7 @@ public class HeartPoint : MonoBehaviour
         if(HP <= 0) // Check 
         {
             //Above.instance.ScoreUp(10);
-            Score.instance.ScoreUp(-10);
+            //Score.instance.ScoreUp(-10);
             Destroy(mHP);
             Destroy(this.gameObject);
 

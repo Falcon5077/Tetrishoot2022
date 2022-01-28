@@ -12,11 +12,13 @@ public class ShootBullet : MonoBehaviour
     public float SpawnDelay = 2f;
     public Vector3 SpawnPosition;
     public bool isShoot;
+    public static bool canShoot = false;
     // Start is called before the first frame update
     void Start()
     {
+        
+        Input.multiTouchEnabled = false;
         StartCoroutine("SpawnBullet");
-
     }
 
     private void Update() {
@@ -33,7 +35,7 @@ public class ShootBullet : MonoBehaviour
 
     public void Shoot()
     {
-        if(Time.timeScale == 0)
+        if(Time.timeScale == 0 || canShoot == false)
             return;
         GameObject temp = Instantiate(bullet,transform.position,Quaternion.identity);
         
@@ -45,6 +47,8 @@ public class ShootBullet : MonoBehaviour
         Destroy(temp,5f);
     }
     public void StartTouch(){
+        if(isShoot == true)
+            return;
         isShoot = true;
         DragMouse();
         StartCoroutine("SpawnBullet");
@@ -68,7 +72,6 @@ public class ShootBullet : MonoBehaviour
         // if(v >= -0.1f){  // 위로 당겼을때만 포지션 이동
         //     transform.position = new Vector3(MousePosition.x,-10,0);
         // }
-        
     }
 
     IEnumerator SpawnBullet()    // 1초 간격으로 랜덤한 블럭 생성
