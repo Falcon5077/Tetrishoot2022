@@ -10,6 +10,7 @@ public class TimeType{
     public const int SpawnSize = 4;
     public const int DrillSpawn = 5;
     public const int QuakeSpawn = 6;
+    public const int LimitHP = 7;
 }
 public class Spawner : MonoBehaviour
 {
@@ -33,16 +34,37 @@ public class Spawner : MonoBehaviour
     }
     private void Awake() {
         instance = this;
-        mGravity = 2.5f;
         defaultHP = 3;
         Time.timeScale = 1;
-        specialBlockTime[TimeType.BombSpawn] = 25;
-        specialBlockTime[TimeType.BombSize] = 3;
-        specialBlockTime[TimeType.FloorSpawn] = 30;
-        specialBlockTime[TimeType.GravitySize] = 3.5f;
-        specialBlockTime[TimeType.SpawnSize] = 3;
-        specialBlockTime[TimeType.DrillSpawn] = 25;
-        specialBlockTime[TimeType.QuakeSpawn] = 25;
+
+        int a = PlayerPrefs.GetInt("Mode",1); // 1 노말 2 익스트림
+        if(a == 1)
+        {
+            specialBlockTime[TimeType.BombSpawn] = 25;
+            specialBlockTime[TimeType.BombSize] = 3;
+            specialBlockTime[TimeType.FloorSpawn] = 30;
+            specialBlockTime[TimeType.GravitySize] = 3.5f;
+            specialBlockTime[TimeType.SpawnSize] = 3;
+            specialBlockTime[TimeType.DrillSpawn] = 25;
+            specialBlockTime[TimeType.QuakeSpawn] = 25;
+            specialBlockTime[TimeType.LimitHP] = 5;
+            Spawner.instance.isHard = true;
+        }   
+        else if(a == 2)
+        {
+            specialBlockTime[TimeType.BombSpawn] = 25;
+            specialBlockTime[TimeType.BombSize] = 3;
+            specialBlockTime[TimeType.FloorSpawn] = 20;
+            specialBlockTime[TimeType.GravitySize] = 5f;
+            specialBlockTime[TimeType.SpawnSize] = 2;
+            specialBlockTime[TimeType.DrillSpawn] = 25;
+            specialBlockTime[TimeType.QuakeSpawn] = 25;
+            specialBlockTime[TimeType.LimitHP] = 3;
+            
+            Spawner.instance.isHard = false;
+        }
+        SpawnDelay = specialBlockTime[TimeType.SpawnSize];
+        mGravity = specialBlockTime[TimeType.GravitySize];
     }
     public void GameStart()
     {
@@ -51,7 +73,6 @@ public class Spawner : MonoBehaviour
             Check.Add(transform.GetChild(i).gameObject);
             Check[i].transform.localPosition = new Vector3(-7.5f,0.98f * (i+1), 0);
             Check[i].GetComponent<BlockCheck>().delay = i/10;
-
         }
         StartCoroutine("SpawnBlock");
         StartCoroutine("Timer");
@@ -68,7 +89,6 @@ public class Spawner : MonoBehaviour
     {
         defaultHP = 3;
         MaxHP = 3;
-        Above.instance.UpTime = 30;
         
         for(int i = 0; i < 180; i++)
         {
@@ -77,28 +97,32 @@ public class Spawner : MonoBehaviour
             {
                 SpawnDelay -= 0.2f;
                 Debug.Log((i+1) + "초 마다 감소 중" + SpawnDelay);
+                MaxHP += 1;
             }
             if((i+1) % 25 == 0)
             {
                 mGravity += 0.2f;
                 Debug.Log((i+1) + "초 마다 가속 중" + mGravity);
             }
-            if(i == 60)
-            {
-                MaxHP += 1;
-            }
             if(i == 120)
             {
-                MaxHP += 1;
+                specialBlockTime[TimeType.BombSpawn] = 10;
+                specialBlockTime[TimeType.DrillSpawn] = 10;
+                specialBlockTime[TimeType.QuakeSpawn] = 10;
             }
             defaultHP = Random.Range(2,MaxHP+1);
+            if(defaultHP > specialBlockTime[TimeType.LimitHP])
+                defaultHP = (int)specialBlockTime[TimeType.LimitHP];
+
             yield return new WaitForSeconds(1f);
-            
         }
 
         while(true)
         {
             defaultHP = Random.Range(2,MaxHP+1);
+            if(defaultHP > specialBlockTime[TimeType.LimitHP])
+                defaultHP = (int)specialBlockTime[TimeType.LimitHP];
+                
             yield return new WaitForSeconds(1f);
         }
     }
@@ -111,7 +135,7 @@ public class Spawner : MonoBehaviour
     IEnumerator SpawnBase()    // 1초 간격으로 랜덤한 블럭 생성
     {
         float t = mGravity;
-        mGravity = 15;
+        mGravity = 18;
         for(int i = 0; i < 5; i++)
         {
             nextBlock = Random.Range(0,Block.Length);
@@ -125,8 +149,8 @@ public class Spawner : MonoBehaviour
 
             GameObject spawn = Instantiate(Block[nextBlock]);
             spawn.GetComponent<Drop>().SetMyPosition(nextBlock);
-            
-            yield return new WaitForSeconds(Random.Range(0.25f,0.4f));
+            mGravity -= 1;
+            yield return new WaitForSeconds(Random.Range(0.35f,0.45f));
         }
 
         mGravity = t;
@@ -165,7 +189,7 @@ public class Spawner : MonoBehaviour
             spawn.AddComponent<Drop_2>();
             spawn.GetComponent<Drop_2>().SetMyPosition(nextBlock);
         }
-        else if(nextBlock == 0 && p < specialBlockTime[TimeType.QuakeSpawn]) //p 0 ~ 49 -> 50/100 확률 -> 세로 블럭이 나왔을때 50%확률로 변경
+        else if(nextBlock == 0 && p < specialBlockTime[TimeType.DrillSpawn]) //p 0 ~ 49 -> 50/100 확률 -> 세로 블럭이 나왔을때 50%확률로 변경
         {
             // 드릴블럭 생성될 확률 로직 추가
             Destroy(spawn.GetComponent<Drop>());

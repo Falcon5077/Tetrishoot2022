@@ -12,6 +12,8 @@ public class Above : MonoBehaviour
     public int count = 0;
     public float UpTime = 60.0f; //바닥이 올라오는 시간
     Coroutine runningCoroutine = null;
+
+    int c = 0;
     // Start is called before the first frame update
     void Awake()
     {
@@ -62,7 +64,7 @@ public class Above : MonoBehaviour
             yield return new WaitForSeconds(0.1f);  //시간이 되면 바닥 올리기
         }
         
-        if(UpTime > 18)
+        if(c++ < 4 && UpTime > 3)
             UpTime -= 3;
 
         if(Time.timeScale != 0){

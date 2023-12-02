@@ -26,7 +26,8 @@ public class BulletManager : MonoBehaviour
 
                 if(other.gameObject.transform.parent.childCount <= 2 && Spawner.instance.isHard == true)
                 {
-                    other.gameObject.GetComponent<HeartPoint>().HeartCalc(0);   // 체력 감소
+                    return;
+                    //other.gameObject.GetComponent<HeartPoint>().HeartCalc(0);   // 체력 감소
                 }
                 else
                 {
@@ -52,7 +53,8 @@ public class BulletManager : MonoBehaviour
                 AudioManager.instance.HitSound();
                 if(other.gameObject.transform.parent.childCount <= 2 && Spawner.instance.isHard == true)
                 {
-                    other.gameObject.GetComponent<HeartPoint>().HeartCalc(0);   // 체력 감소
+                    return;
+                    //other.gameObject.GetComponent<HeartPoint>().HeartCalc(0);   // 체력 감소
                 }
                 else
                 {

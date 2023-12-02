@@ -16,9 +16,8 @@ public class Land : MonoBehaviour
         // 블럭이 온전하면 고정 아니라면 중력 적용
         if(transform.parent.childCount == 4){
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            Score.instance.ScoreUp(50);
+            Score.instance.ScoreUp(15);
         }
-            
         else
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
     }
