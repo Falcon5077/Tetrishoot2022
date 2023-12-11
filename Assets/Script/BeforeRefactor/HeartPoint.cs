@@ -19,13 +19,11 @@ public class HeartPoint : MonoBehaviour
         mHP.GetComponent<TextMeshProUGUI>().text = HP.ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(mHP == null)
             return;
 
-        //mHP.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         mHP.transform.position = transform.position;        
     }
 
@@ -45,10 +43,8 @@ public class HeartPoint : MonoBehaviour
 
         mHP.GetComponent<TextMeshProUGUI>().text = HP.ToString();
 
-        if(HP <= 0) // Check 
+        if(HP <= 0)
         {
-            //Above.instance.ScoreUp(10);
-            //Score.instance.ScoreUp(-10);
             Destroy(mHP);
             Destroy(this.gameObject);
 
