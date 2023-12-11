@@ -36,6 +36,7 @@ public class Drop : MonoBehaviour
         {
             return; // 총알과 닿으면 아무 동작하지 않고 return
         }
+        
         if(isHit == false)  // 땅에 처음 닿았다면 
         {            
             AudioManager.instance.LandSound();

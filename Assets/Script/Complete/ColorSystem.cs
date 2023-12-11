@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+// * ---------------------------------------------------------- //
+// * 오브젝트의 Color를 관리하는 스크립트입니다.
+// * 오브젝트 : GameManager
+// * ---------------------------------------------------------- //
+
 using UnityEngine;
 
 public class ColorSystem : MonoBehaviour
 {
     public static ColorSystem instance;
-    // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        if(instance == null) instance = this;
     }
-
 
     public void SetColor(string first, ref Color mColor) {
         if(first == "0")

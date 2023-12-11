@@ -716,11 +716,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15578b8b365e0d4f80ae489975afd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHard: 0
-  mGravity: 0
   defaultHP: 0
   MaxHP: 0
-  SpawnDelay: 3
+  mGravity: 0
+  isHard: 0
+  mText: {fileID: 88345702}
+  nextBlock: 0
   Block:
   - {fileID: 7474814352862020201, guid: ae205e606c8bbf043920864f8d0f2a11, type: 3}
   - {fileID: 8207263191491999745, guid: e380c6e2870f0c34ea49e7ca6ba61dc8, type: 3}
@@ -730,11 +731,7 @@ MonoBehaviour:
   - {fileID: 3651990473376701005, guid: 915d224da6aa7264eb565d133ecff41c, type: 3}
   - {fileID: 6341636138889373843, guid: 0a171cb0cae6f1947a6f7202ee744b3d, type: 3}
   - {fileID: 3651990473376701005, guid: 910cd86eb056b814194fac801dd4b0a9, type: 3}
-  nextBlock: 0
-  minX: -5
-  maxX: 5
-  Check: []
-  mText: {fileID: 88345702}
+  SpawnDelay: 3
   specialBlockTime:
   - 0
   - 0
@@ -746,6 +743,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  Check: []
 --- !u!4 &58154094
 Transform:
   m_ObjectHideFlags: 0
@@ -2458,8 +2456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4836da147aa770340a5048ee6c5840c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reStart: 0
   block: []
+  reStart: 0
   isOver: 0
 --- !u!1 &192465512
 GameObject:
@@ -16204,7 +16202,7 @@ GameObject:
   - component: {fileID: 2066506092}
   - component: {fileID: 2066506094}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16349,8 +16347,8 @@ MonoBehaviour:
   - {fileID: 876180250}
   - {fileID: 392824409}
   - {fileID: 1425554768}
-  - {fileID: 2066506092}
   - {fileID: 1260106923}
+  - {fileID: 2066506092}
 --- !u!1 &2085813634
 GameObject:
   m_ObjectHideFlags: 0

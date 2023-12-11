@@ -35,6 +35,7 @@ public class BombScript : MonoBehaviour
         GameObject particle = Instantiate(bombParticle,transform.position,Quaternion.identity);
         Destroy(particle,1f);
         BlockCheck.instance.EarthQuake();
+        
         if(GetComponent<Rigidbody2D>() == null)
         {
             gameObject.AddComponent<Rigidbody2D>();
