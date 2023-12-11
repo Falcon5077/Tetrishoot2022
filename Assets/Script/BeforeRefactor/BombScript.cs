@@ -11,6 +11,14 @@ public class BombScript : MonoBehaviour
         Bomb();
     }
 
+    void Update()
+    {
+        if(GetComponent<Land>() != null)
+        {
+            Bomb();
+        }
+    }
+
     public void Bomb()
     {
         GameObject particle = Instantiate(bombParticle,transform.position,Quaternion.identity);
